@@ -3,7 +3,7 @@
 module ActiveNutrition
   module Models
     class Langual < ActiveRecord::Base
-      self.table_name = "langual"
+      self.table_name = "an_langual"
       self.primary_key = :NDB_No
 
       validates :NDB_No, :uniqueness => { :scope => [:Factor_Code] }

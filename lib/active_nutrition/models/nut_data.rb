@@ -3,7 +3,7 @@
 module ActiveNutrition
   module Models
     class NutData < ActiveRecord::Base
-      self.table_name = "nut_data"
+      self.table_name = "an_nut_data"
       self.primary_key = :NDB_No
 
       alias_attribute :value, :Nutr_Val

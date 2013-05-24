@@ -3,7 +3,7 @@
 module ActiveNutrition
   module Models
     class Datsrcln < ActiveRecord::Base
-      self.table_name = "datsrcln"
+      self.table_name = "an_datsrcln"
       self.primary_key = :NDB_No
 
       validates :NDB_No, :uniqueness => { :scope => [:Nutr_No, :DataSrc_ID] }

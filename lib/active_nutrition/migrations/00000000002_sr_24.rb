@@ -4,7 +4,7 @@ module ActiveNutrition
   module Migrations
     class Sr24 < ActiveRecord::Migration
       def self.up
-        create_table "abbrev", :primary_key => "NDB_No", :force => true do |t|
+        create_table "an_abbrev", :primary_key => "NDB_No", :force => true do |t|
           t.string  "Shrt_Desc",                  :limit => 60
           t.float   "Water"
           t.integer "Energ_Kcal"
@@ -59,10 +59,10 @@ module ActiveNutrition
           t.integer "Refuse_Pct"
         end
 
-        add_index "abbrev", ["Folic_Acid"], :name => "Abbrev_Folic_Acid_Index"
-        add_index "abbrev", ["Panto_Acid"], :name => "Abbrev_Panto_Acid_Index"
+        add_index "an_abbrev", ["Folic_Acid"], :name => "Abbrev_Folic_Acid_Index"
+        add_index "an_abbrev", ["Panto_Acid"], :name => "Abbrev_Panto_Acid_Index"
 
-        create_table "data_src", :id => false, :primary_key => "DataSrc_ID", :force => true do |t|
+        create_table "an_data_src", :id => false, :primary_key => "DataSrc_ID", :force => true do |t|
           t.integer "DataSrc_ID"
           t.string "Authors"
           t.string "Title"
@@ -74,29 +74,29 @@ module ActiveNutrition
           t.string "End_Page",    :limit => 5
         end
 
-        add_index "data_src", ["DataSrc_ID"], :name => "DataSrc_ID_Index"
+        add_index "an_data_src", ["DataSrc_ID"], :name => "DataSrc_ID_Index"
 
-        create_table "datsrcln", :id => false, :primary_key => "NDB_No", :force => true do |t|
+        create_table "an_datsrcln", :id => false, :primary_key => "NDB_No", :force => true do |t|
           t.integer "NDB_No",                  :null => false
           t.integer "Nutr_No",                 :null => false
           t.string  "DataSrc_ID", :limit => 6, :null => false
         end
 
-        add_index "datsrcln", ["NDB_No", "Nutr_No", "DataSrc_ID"], :name => "Datsrcln_NDB_No_Nutr_No_DataSrc_ID_Index", :unique => true
+        add_index "an_datsrcln", ["NDB_No", "Nutr_No", "DataSrc_ID"], :name => "Datsrcln_NDB_No_Nutr_No_DataSrc_ID_Index", :unique => true
 
-        #create_table "deriv_cd", :primary_key => "Deriv_CD", :force => true do |t|
-        create_table "deriv_cd", :id => false, :primary_key => "Deriv_CD", :force => true do |t|
+        #create_table "an_deriv_cd", :primary_key => "Deriv_CD", :force => true do |t|
+        create_table "an_deriv_cd", :id => false, :primary_key => "Deriv_CD", :force => true do |t|
           t.integer "Deriv_CD"
           t.string "Deriv_Desc", :limit => 120
         end
 
-        add_index "deriv_cd", ["Deriv_CD"], :name => "Deriv_CD_Deriv_CD_Index"
+        add_index "an_deriv_cd", ["Deriv_CD"], :name => "Deriv_CD_Deriv_CD_Index"
 
-        create_table "fd_group", :primary_key => "FdGrp_CD", :force => true do |t|
+        create_table "an_fd_group", :primary_key => "FdGrp_CD", :force => true do |t|
           t.string "FdGrp_Desc", :limit => 60
         end
 
-        create_table "food_des", :primary_key => "NDB_No", :force => true do |t|
+        create_table "an_food_des", :primary_key => "NDB_No", :force => true do |t|
           t.string  "FdGrp_Cd",    :limit => 4
           t.string  "Long_Desc",   :limit => 200
           t.string  "Shrt_Desc",   :limit => 60
@@ -112,7 +112,7 @@ module ActiveNutrition
           t.float   "CHO_Factor"
         end
 
-        create_table "footnote", :id => false, :primary_key => "Footnt_No", :force => true do |t|
+        create_table "an_footnote", :id => false, :primary_key => "Footnt_No", :force => true do |t|
           t.integer "NDB_No",      :null => false
           t.integer "Footnt_No"
           t.string  "Footnot_Typ", :limit => 1
@@ -120,21 +120,21 @@ module ActiveNutrition
           t.string  "Footnot_Txt", :limit => 200
         end
 
-        create_table "langdesc", :id => false, :primary_key => "Factor_Code", :force => true do |t|
+        create_table "an_langdesc", :id => false, :primary_key => "Factor_Code", :force => true do |t|
           t.string "Factor_Code"
           t.string "Description", :limit => 250
         end
 
-        add_index "langdesc", ["Factor_Code"], :name => "LangDesc_Factor_Code_Index"
+        add_index "an_langdesc", ["Factor_Code"], :name => "LangDesc_Factor_Code_Index"
 
-        create_table "langual", :id => false, :primary_key => "NDB_No", :force => true do |t|
+        create_table "an_langual", :id => false, :primary_key => "NDB_No", :force => true do |t|
           t.integer "NDB_No", :null => false
           t.string  "Factor_Code", :limit => 6, :null => false
         end
 
-        add_index "langual", ["NDB_No", "Factor_Code"], :name => "Langual_NDB_No_Factor_Code_Index", :unique => true
+        add_index "an_langual", ["NDB_No", "Factor_Code"], :name => "Langual_NDB_No_Factor_Code_Index", :unique => true
 
-        create_table "nut_data", :id => false, :primary_key => "NDB_No", :force => true do |t|
+        create_table "an_nut_data", :id => false, :primary_key => "NDB_No", :force => true do |t|
           t.integer "NDB_No",        :null => false
           t.integer "Nutr_No",       :null => false
           t.float   "Nutr_Val"
@@ -155,11 +155,11 @@ module ActiveNutrition
           t.string  "CC"
         end
 
-        add_index "nut_data", ["NDB_No", "Nutr_No"], :name => "Nut_Data_NDB_No_Nutr_No_Index", :unique => true
-        add_index "nut_data", ["Num_Data_Pts"], :name => "Nut_Data_Num_Data_Pts_Index"
-        add_index "nut_data", ["Num_Studies"], :name => "Num_Studies_Index"
+        add_index "an_nut_data", ["NDB_No", "Nutr_No"], :name => "Nut_Data_NDB_No_Nutr_No_Index", :unique => true
+        add_index "an_nut_data", ["Num_Data_Pts"], :name => "Nut_Data_Num_Data_Pts_Index"
+        add_index "an_nut_data", ["Num_Studies"], :name => "Num_Studies_Index"
 
-        create_table "nutr_def", :primary_key => "Nutr_No", :force => true do |t|
+        create_table "an_nutr_def", :primary_key => "Nutr_No", :force => true do |t|
           t.string "Units",    :limit => 7
           t.string "Tagname",  :limit => 20
           t.string "NutrDesc", :limit => 60
@@ -167,13 +167,13 @@ module ActiveNutrition
           t.float  "SR_Order"
         end
 
-        add_index "nutr_def", ["Num_Dec"], :name => "Num_Dec_Index"
+        add_index "an_nutr_def", ["Num_Dec"], :name => "Num_Dec_Index"
 
-        create_table "src_cd", :primary_key => "Src_Cd", :force => true do |t|
+        create_table "an_src_cd", :primary_key => "Src_Cd", :force => true do |t|
           t.string "SrcCd_Desc", :limit => 60
         end
 
-        create_table "weight", :id => false, :primary_key => "NDB_No", :force => true do |t|
+        create_table "an_weight", :id => false, :primary_key => "NDB_No", :force => true do |t|
           t.integer "NDB_No",       :null => false
           t.integer "Seq",          :null => false
           t.float   "Amount"
@@ -183,24 +183,24 @@ module ActiveNutrition
           t.float   "Std_Dev"
         end
 
-        add_index "weight", ["NDB_No", "Seq"], :name => "Weight_NDB_No_Seq_Index", :unique => true
-        add_index "weight", ["Num_Data_Pts"], :name => "Weight_Num_Data_Pts_Index"
+        add_index "an_weight", ["NDB_No", "Seq"], :name => "Weight_NDB_No_Seq_Index", :unique => true
+        add_index "an_weight", ["Num_Data_Pts"], :name => "Weight_Num_Data_Pts_Index"
       end
 
       def self.down
-        drop_table "abbrev"
-        drop_table "data_src"
-        drop_table "datsrcln"
-        drop_table "deriv_cd"
-        drop_table "fd_group"
-        drop_table "food_des"
-        drop_table "footnote"
-        drop_table "langdesc"
-        drop_table "langual"
-        drop_table "nut_data"
-        drop_table "nutr_def"
-        drop_table "src_cd"
-        drop_table "weight"
+        drop_table "an_abbrev"
+        drop_table "an_data_src"
+        drop_table "an_datsrcln"
+        drop_table "an_deriv_cd"
+        drop_table "an_fd_group"
+        drop_table "an_food_des"
+        drop_table "an_footnote"
+        drop_table "an_langdesc"
+        drop_table "an_langual"
+        drop_table "an_nut_data"
+        drop_table "an_nutr_def"
+        drop_table "an_src_cd"
+        drop_table "an_weight"
       end
     end
   end

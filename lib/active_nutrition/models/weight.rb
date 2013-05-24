@@ -3,7 +3,7 @@
 module ActiveNutrition
   module Models
     class Weight < ActiveRecord::Base
-      self.table_name = "weight"
+      self.table_name = "an_weight"
       self.primary_key = :NDB_No
 
       validates :NDB_No, :uniqueness => { :scope => [:Seq] }
