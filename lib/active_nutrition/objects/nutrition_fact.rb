@@ -16,6 +16,10 @@ module ActiveNutrition
         define_method(method) { self.attributes[attr_name.to_s] }
       end
 
+      def amount_per_gram
+        self.base_model.amount_per_gram
+      end
+
       def attributes
         @attributes ||= base_model.attributes.merge(base_model.definition.attributes)
       end
