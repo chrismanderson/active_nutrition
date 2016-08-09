@@ -1,3 +1,8 @@
+=== 1.0.0
+
+* gemspec is compatible with activerecord 3 & 4
+* Removed composite_primary_keys dependency
+
 === 0.6.1
 
 * Fixing attr_accessible in Migration model.

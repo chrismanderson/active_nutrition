@@ -6,6 +6,7 @@ require "version"
 Gem::Specification.new do |s|
   s.name        = "active_nutrition"
   s.version     = ActiveNutrition::VERSION
+  s.licenses    = ['Nonstandard']
   s.authors     = ["Cameron Dutro"]
   s.email       = ["camertron@gmail.com"]
   s.homepage    = "http://github.com/camertron"
@@ -18,7 +19,7 @@ Gem::Specification.new do |s|
   s.test_files    = Dir["spec/**/*"]
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency "activerecord", "~> 3.0"
-  s.add_runtime_dependency "rubyzip", "~> 0.9.4"
-  s.add_runtime_dependency "composite_primary_keys", "~> 5.0.12"
+  s.add_runtime_dependency "activerecord",            ">= 3.0", "< 5"
+  s.add_runtime_dependency "rubyzip",                 "~> 1.0"
+  s.add_runtime_dependency "zip-zip",                 "~> 0.3"
 end

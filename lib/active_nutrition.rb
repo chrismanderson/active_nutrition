@@ -13,7 +13,6 @@ require 'rake'
 require 'json'
 require 'zip/zip'
 require 'active_record'
-require 'composite_primary_keys'
 
 require 'active_nutrition/models'
 require 'active_nutrition/objects'
