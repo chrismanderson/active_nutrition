@@ -23,11 +23,11 @@ module ActiveNutrition
       end
 
       def nutrition_facts
-        @nutrition_facts ||= NutritionFacts.new(NutritionFact.wrap(base_model.nutrition_facts))
+        @nutrition_facts ||= NutritionFacts.new(base_model.nutrition_facts.map{|f| NutritionFact.wrap(f) })
       end
 
       def weights
-        @weights ||= Weights.new(Weight.wrap(base_model.weights))
+        @weights ||= Weights.new(base_model.weights.map{|w| Weight.wrap(w)})
       end
 
       def factors
