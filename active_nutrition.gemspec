@@ -20,6 +20,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "activerecord",            ">= 3.0", "< 5"
-  s.add_runtime_dependency "rubyzip",                 "~> 1.0"
+  s.add_runtime_dependency "rubyzip",                 ">= 1.2"
   s.add_runtime_dependency "zip-zip",                 "~> 0.3"
 end
